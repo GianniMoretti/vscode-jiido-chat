@@ -5,6 +5,7 @@
 
 import { PromptReference, Raw } from '@vscode/prompt-tsx';
 import type * as vscode from 'vscode';
+import { isBYOKModel } from '../../../jiido/providers/node/openAIEndpoint';
 import { ChatFetchResponseType, ChatLocation } from '../../../platform/chat/common/commonTypes';
 import { getTextPart, roleToString } from '../../../platform/chat/common/globalStringUtils';
 import { ConfigKey, IConfigurationService } from '../../../platform/configuration/common/configurationService';
@@ -19,7 +20,6 @@ import { isNotebookCellOrNotebookChatInput } from '../../../util/common/notebook
 import { extUriBiasedIgnorePathCase } from '../../../util/vs/base/common/resources';
 import { URI } from '../../../util/vs/base/common/uri';
 import { IInstantiationService } from '../../../util/vs/platform/instantiation/common/instantiation';
-import { isBYOKModel } from '../../byok/node/openAIEndpoint';
 import { Intent, agentsToCommands } from '../../common/constants';
 import { DiagnosticsTelemetryData, findDiagnosticsTelemetry } from '../../inlineChat/node/diagnosticsTelemetry';
 import { InteractionOutcome } from '../../inlineChat/node/promptCraftingTypes';

@@ -4732,6 +4732,51 @@
 						"tags": [
 							"advanced"
 						]
+					},
+					"jiido.models": {
+						"type": "array",
+						"default": [],
+						"markdownDescription": "Jiido Chat: configured external models. Each entry defines a model provider and model ID. API keys are stored securely via VS Code secrets.",
+						"items": {
+							"type": "object",
+							"required": [
+								"provider",
+								"model"
+							],
+							"properties": {
+								"provider": {
+									"type": "string",
+									"enum": [
+										"ollama",
+										"openai",
+										"anthropic",
+										"azure",
+										"gemini",
+										"xai",
+										"openrouter",
+										"custom"
+									],
+									"markdownDescription": "Model provider"
+								},
+								"model": {
+									"type": "string",
+									"markdownDescription": "Model ID (e.g. llama3.2, gpt-4o, claude-3-opus)"
+								},
+								"baseUrl": {
+									"type": "string",
+									"markdownDescription": "Base URL for API (e.g. http://localhost:11434 for Ollama)"
+								},
+								"type": {
+									"type": "string",
+									"enum": [
+										"chat",
+										"embeddings"
+									],
+									"default": "chat",
+									"markdownDescription": "Model type"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -6214,10 +6259,10 @@
 		"vscode-dts:check": "node script/build/vscodeDtsCheck.js",
 		"vscode-dts:dev": "node node_modules/@vscode/dts/index.js dev && node script/build/moveProposedDts.js",
 		"vscode-dts:main": "node node_modules/@vscode/dts/index.js main && node script/build/moveProposedDts.js",
-		"build": "node .esbuild.ts --sourcemaps",
-		"compile": "node .esbuild.ts --dev",
+		"build": "tsx .esbuild.ts --sourcemaps",
+		"compile": "tsx .esbuild.ts --dev",
 		"watch": "npm-run-all -p watch:*",
-		"watch:esbuild": "node .esbuild.ts --watch --dev",
+		"watch:esbuild": "tsx .esbuild.ts --watch --dev",
 		"watch:tsc-extension": "tsc --noEmit --watch --project tsconfig.json",
 		"watch:tsc-extension-web": "tsc --noEmit --watch --project tsconfig.worker.json",
 		"watch:tsc-simulation-workbench": "tsc --noEmit --watch --project test/simulation/workbench/tsconfig.json",

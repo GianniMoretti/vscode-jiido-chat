@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import { IVSCodeExtensionContext } from '../../../platform/extContext/common/extensionContext';
-import { BYOKAuthType, BYOKModelCapabilities } from '../../byok/common/byokProvider';
+import { BYOKAuthType, BYOKModelCapabilities } from '../common/byokProvider';
 
 export interface StoredModelConfig {
 	deploymentUrl?: string;

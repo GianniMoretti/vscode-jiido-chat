@@ -7,7 +7,7 @@ import { ILogService } from '../../../platform/log/common/logService';
 import { IFetcherService } from '../../../platform/networking/common/fetcherService';
 import { IExperimentationService } from '../../../platform/telemetry/common/nullExperimentationService';
 import { IInstantiationService } from '../../../util/vs/platform/instantiation/common/instantiation';
-import { BYOKKnownModels, BYOKModelCapabilities } from '../common/byokProvider';
+import { BYOKModelCapabilities } from '../common/byokProvider';
 import { AbstractOpenAICompatibleLMProvider } from './abstractLanguageModelChatProvider';
 import { IBYOKStorageService } from './byokStorageService';
 
@@ -34,7 +34,6 @@ export class XAIBYOKLMProvider extends AbstractOpenAICompatibleLMProvider {
 	public static readonly providerName = 'xAI';
 
 	constructor(
-		knownModels: BYOKKnownModels,
 		byokStorageService: IBYOKStorageService,
 		@IFetcherService fetcherService: IFetcherService,
 		@ILogService logService: ILogService,
@@ -45,7 +44,7 @@ export class XAIBYOKLMProvider extends AbstractOpenAICompatibleLMProvider {
 		super(
 			XAIBYOKLMProvider.providerName.toLowerCase(),
 			XAIBYOKLMProvider.providerName,
-			knownModels,
+			undefined,
 			byokStorageService,
 			fetcherService,
 			logService,

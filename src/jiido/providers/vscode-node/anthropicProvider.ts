@@ -12,9 +12,9 @@ import { CustomDataPartMimeTypes } from '../../../platform/endpoint/common/endpo
 import { buildToolInputSchema } from '../../../platform/endpoint/node/messagesApi';
 import { ILogService } from '../../../platform/log/common/logService';
 import { ContextManagementResponse, getContextManagementFromConfig, isAnthropicContextEditingEnabled, isAnthropicMemoryToolEnabled, isAnthropicToolSearchEnabled, TOOL_SEARCH_TOOL_NAME, TOOL_SEARCH_TOOL_TYPE, ToolSearchToolResult, ToolSearchToolSearchResult } from '../../../platform/networking/common/anthropic';
-import { IToolDeferralService } from '../../../platform/networking/common/toolDeferralService';
 import { IResponseDelta, OpenAiFunctionTool } from '../../../platform/networking/common/fetch';
 import { APIUsage } from '../../../platform/networking/common/openai';
+import { IToolDeferralService } from '../../../platform/networking/common/toolDeferralService';
 import { CopilotChatAttr, emitInferenceDetailsEvent, GenAiAttr, GenAiMetrics, GenAiOperationName, type OTelModelOptions, StdAttr, truncateForOTel } from '../../../platform/otel/common/index';
 import { IOTelService, SpanKind, SpanStatusCode } from '../../../platform/otel/common/otelService';
 import { IRequestLogger, retrieveCapturingTokenByCorrelation, runWithCapturingToken } from '../../../platform/requestLogger/node/requestLogger';
@@ -24,7 +24,7 @@ import { toErrorMessage } from '../../../util/common/errorMessage';
 import { RecordedProgress } from '../../../util/common/progressRecorder';
 import { generateUuid } from '../../../util/vs/base/common/uuid';
 import { anthropicMessagesToRawMessagesForLogging, apiMessageToAnthropicMessage } from '../common/anthropicMessageConverter';
-import { BYOKKnownModels, BYOKModelCapabilities, LMResponsePart } from '../common/byokProvider';
+import { BYOKModelCapabilities, LMResponsePart } from '../common/byokProvider';
 import { AbstractLanguageModelChatProvider, ExtendedLanguageModelChatInformation, LanguageModelChatConfiguration } from './abstractLanguageModelChatProvider';
 import { byokKnownModelsToAPIInfoWithEffort } from './byokModelInfo';
 import { IBYOKStorageService } from './byokStorageService';
@@ -34,7 +34,6 @@ export class AnthropicLMProvider extends AbstractLanguageModelChatProvider {
 	public static readonly providerName = 'Anthropic';
 
 	constructor(
-		knownModels: BYOKKnownModels | undefined,
 		byokStorageService: IBYOKStorageService,
 		@ILogService logService: ILogService,
 		@IRequestLogger private readonly _requestLogger: IRequestLogger,
@@ -44,7 +43,7 @@ export class AnthropicLMProvider extends AbstractLanguageModelChatProvider {
 		@IOTelService private readonly _otelService: IOTelService,
 		@IToolDeferralService private readonly _toolDeferralService: IToolDeferralService,
 	) {
-		super(AnthropicLMProvider.providerName.toLowerCase(), AnthropicLMProvider.providerName, knownModels, byokStorageService, logService);
+		super(AnthropicLMProvider.providerName.toLowerCase(), AnthropicLMProvider.providerName, undefined, byokStorageService, logService);
 
 	}
 

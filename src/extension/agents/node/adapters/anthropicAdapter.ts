@@ -5,11 +5,11 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import * as http from 'http';
+import { anthropicMessagesToRawMessages } from '../../../../jiido/providers/common/anthropicMessageConverter';
 import type { OpenAiFunctionTool } from '../../../../platform/networking/common/fetch';
 import { IMakeChatRequestOptions } from '../../../../platform/networking/common/networking';
 import { APIUsage } from '../../../../platform/networking/common/openai';
 import { coalesce } from '../../../../util/vs/base/common/arrays';
-import { anthropicMessagesToRawMessages } from '../../../byok/common/anthropicMessageConverter';
 import { IAgentStreamBlock, IParsedRequest, IProtocolAdapter, IProtocolAdapterFactory, IStreamEventData, IStreamingContext } from './types';
 
 export class AnthropicAdapterFactory implements IProtocolAdapterFactory {

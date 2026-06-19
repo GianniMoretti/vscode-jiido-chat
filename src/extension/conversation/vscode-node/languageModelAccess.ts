@@ -6,6 +6,7 @@
 
 import { Raw } from '@vscode/prompt-tsx';
 import * as vscode from 'vscode';
+import type { LMResponsePart } from '../../../jiido/providers/common/byokProvider';
 import { IAuthenticationService } from '../../../platform/authentication/common/authentication';
 import { CopilotToken } from '../../../platform/authentication/common/copilotToken';
 import { IBlockedExtensionService } from '../../../platform/chat/common/blockedExtensionService';
@@ -38,7 +39,6 @@ import { Disposable, MutableDisposable } from '../../../util/vs/base/common/life
 import { isBoolean, isDefined, isNumber, isString, isStringArray } from '../../../util/vs/base/common/types';
 import { IInstantiationService } from '../../../util/vs/platform/instantiation/common/instantiation';
 import { ChatLocation as ApiChatLocation, ExtensionMode } from '../../../vscodeTypes';
-import type { LMResponsePart } from '../../byok/common/byokProvider';
 import { IExtensionContribution } from '../../common/contributions';
 import { PromptRenderer } from '../../prompts/node/base/promptRenderer';
 import { isImageDataPart } from '../common/languageModelChatMessageHelpers';

@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import { isBYOKModel } from '../../../jiido/providers/node/openAIEndpoint';
 import { ChatFetchError } from '../../../platform/chat/common/commonTypes';
 import { isAutoModel } from '../../../platform/endpoint/node/autoChatEndpoint';
 import { FetcherId } from '../../../platform/networking/common/fetcherService';
@@ -10,7 +11,6 @@ import { IChatEndpoint, IChatRequestTelemetryProperties, IEndpointBody } from '.
 import { ChatCompletion } from '../../../platform/networking/common/openai';
 import { ITelemetryService } from '../../../platform/telemetry/common/telemetry';
 import { TelemetryData } from '../../../platform/telemetry/common/telemetryData';
-import { isBYOKModel } from '../../byok/node/openAIEndpoint';
 
 export interface IChatMLFetcherSuccessfulData {
 	chatCompletion: ChatCompletion;
