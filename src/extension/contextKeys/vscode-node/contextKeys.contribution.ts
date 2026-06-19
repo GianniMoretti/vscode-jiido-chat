@@ -17,29 +17,29 @@ import { GHPR_EXTENSION_ID } from '../../chatSessions/vscode/chatSessionsUriHand
 import { EXTENSION_ID } from '../../common/constants';
 
 const welcomeViewContextKeys = {
-	Activated: 'github.copilot-chat.activated',
-	Offline: 'github.copilot.offline',
-	IndividualDisabled: 'github.copilot.interactiveSession.individual.disabled',
-	IndividualExpired: 'github.copilot.interactiveSession.individual.expired',
-	ContactSupport: 'github.copilot.interactiveSession.contactSupport',
-	EnterpriseDisabled: 'github.copilot.interactiveSession.enterprise.disabled',
-	InvalidToken: 'github.copilot.interactiveSession.invalidToken',
-	RateLimited: 'github.copilot.interactiveSession.rateLimited',
-	GitHubLoginFailed: 'github.copilot.interactiveSession.gitHubLoginFailed',
+	Activated: 'jiido-chat.activated',
+	Offline: 'jiido.offline',
+	IndividualDisabled: 'jiido.interactiveSession.individual.disabled',
+	IndividualExpired: 'jiido.interactiveSession.individual.expired',
+	ContactSupport: 'jiido.interactiveSession.contactSupport',
+	EnterpriseDisabled: 'jiido.interactiveSession.enterprise.disabled',
+	InvalidToken: 'jiido.interactiveSession.invalidToken',
+	RateLimited: 'jiido.interactiveSession.rateLimited',
+	GitHubLoginFailed: 'jiido.interactiveSession.gitHubLoginFailed',
 };
 
-const chatQuotaExceededContextKey = 'github.copilot.chat.quotaExceeded';
+const chatQuotaExceededContextKey = 'jiido.chat.quotaExceeded';
 
-const showLogViewContextKey = `github.copilot.chat.showLogView`;
-const debugReportFeedbackContextKey = 'github.copilot.debugReportFeedback';
+const showLogViewContextKey = `jiido.chat.showLogView`;
+const debugReportFeedbackContextKey = 'jiido.debugReportFeedback';
 
-const previewFeaturesDisabledContextKey = 'github.copilot.previewFeaturesDisabled';
+const previewFeaturesDisabledContextKey = 'jiido.previewFeaturesDisabled';
 
-const debugContextKey = 'github.copilot.chat.debug';
+const debugContextKey = 'jiido.chat.debug';
 
-const missingPermissiveSessionContextKey = 'github.copilot.auth.missingPermissiveSession';
+const missingPermissiveSessionContextKey = 'jiido.auth.missingPermissiveSession';
 
-export const prExtensionInstalledContextKey = 'github.copilot.prExtensionInstalled';
+export const prExtensionInstalledContextKey = 'jiido.prExtensionInstalled';
 
 export class ContextKeysContribution extends Disposable {
 
@@ -60,8 +60,8 @@ export class ContextKeysContribution extends Disposable {
 		void this._inspectContext().catch(console.error);
 		void this._updatePermissiveSessionContext().catch(console.error);
 		this._register(_authenticationService.onDidAuthenticationChange(async () => await this._onAuthenticationChange()));
-		this._register(commands.registerCommand('github.copilot.refreshToken', async () => await this._inspectContext()));
-		this._register(commands.registerCommand('github.copilot.debug.showChatLogView', async () => {
+		this._register(commands.registerCommand('jiido.refreshToken', async () => await this._inspectContext()));
+		this._register(commands.registerCommand('jiido.debug.showChatLogView', async () => {
 			this._showLogView = true;
 			await commands.executeCommand('setContext', showLogViewContextKey, true);
 			await commands.executeCommand('copilot-chat.focus');

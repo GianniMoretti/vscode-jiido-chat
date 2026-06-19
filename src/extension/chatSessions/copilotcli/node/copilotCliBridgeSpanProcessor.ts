@@ -160,8 +160,8 @@ export class CopilotCliBridgeSpanProcessor implements SpanProcessor {
 
 		// SDK native hook spans: enrich with data from session events and
 		// remap to execute_hook so the debug panel shows full details.
-		const invocationId = span.attributes['github.copilot.hook.invocation_id'];
-		if (span.name.startsWith('hook ') && span.attributes['github.copilot.hook.type'] && typeof invocationId === 'string') {
+		const invocationId = span.attributes['jiido.hook.invocation_id'];
+		if (span.name.startsWith('hook ') && span.attributes['jiido.hook.type'] && typeof invocationId === 'string') {
 			const hookEndData = this._hookData.get(invocationId);
 			if (hookEndData?.resultKind) {
 				// hook.end data already arrived — enrich and inject immediately

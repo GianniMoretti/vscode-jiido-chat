@@ -72,7 +72,7 @@ export class QuickFixesProvider implements vscode.CodeActionProvider {
 		if (altTextQuickFixes) {
 			altTextQuickFixes.command = {
 				title: altTextQuickFixes.title,
-				command: 'github.copilot.chat.generateAltText',
+				command: 'jiido.chat.generateAltText',
 				arguments: [
 					{
 						type: altTextQuickFixes.type,
@@ -92,7 +92,7 @@ export class QuickFixesProvider implements vscode.CodeActionProvider {
 			const reviewAction = new AICodeAction(vscode.l10n.t('Review'), QuickFixesProvider.reviewKind);
 			reviewAction.command = {
 				title: reviewAction.title,
-				command: 'github.copilot.chat.review',
+				command: 'jiido.chat.review',
 			};
 			codeActions.push(reviewAction);
 		}
@@ -127,7 +127,7 @@ export class QuickFixesProvider implements vscode.CodeActionProvider {
 		const query = `/${Intent.Explain} ${diagnostics}`;
 		explainAction.command = {
 			title: explainAction.title,
-			command: 'github.copilot.chat.explain',
+			command: 'jiido.chat.explain',
 			arguments: [query],
 		};
 

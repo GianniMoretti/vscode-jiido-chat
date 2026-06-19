@@ -289,7 +289,7 @@ export async function githubReview(
 
 /**
  * Review files specified as URI pairs (current + base content).
- * This is the entry point for the `github.copilot.chat.codeReview.run` command,
+ * This is the entry point for the `jiido.chat.codeReview.run` command,
  * bypassing git-based change collection.
  */
 export async function githubReviewFileUris(

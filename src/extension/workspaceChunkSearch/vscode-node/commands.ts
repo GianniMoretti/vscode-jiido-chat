@@ -11,8 +11,8 @@ import { TelemetryCorrelationId } from '../../../util/common/telemetryCorrelatio
 import { DisposableStore, IDisposable } from '../../../util/vs/base/common/lifecycle';
 import { ServicesAccessor } from '../../../util/vs/platform/instantiation/common/instantiation';
 
-export const buildRemoteIndexCommandId = 'github.copilot.buildRemoteWorkspaceIndex';
-export const deleteExternalIngestWorkspaceIndexCommandId = 'github.copilot.deleteExternalIngestWorkspaceIndex';
+export const buildRemoteIndexCommandId = 'jiido.buildRemoteWorkspaceIndex';
+export const deleteExternalIngestWorkspaceIndexCommandId = 'jiido.deleteExternalIngestWorkspaceIndex';
 
 export function register(accessor: ServicesAccessor): IDisposable {
 	const workspaceChunkSearch = accessor.get(IWorkspaceChunkSearchService);
@@ -53,7 +53,7 @@ export function register(accessor: ServicesAccessor): IDisposable {
 		});
 	})));
 
-	disposableStore.add(vscode.commands.registerCommand('github.copilot.debug.collectWorkspaceIndexDiagnostics', async () => {
+	disposableStore.add(vscode.commands.registerCommand('jiido.debug.collectWorkspaceIndexDiagnostics', async () => {
 		vscode.window.withProgress({
 			location: vscode.ProgressLocation.Window,
 			title: t`Collecting codebase index diagnostics...`,

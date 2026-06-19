@@ -10,36 +10,36 @@
 // - These IDs should be used in package.json
 // - These IDs should only be registered if they appear in the package.json (meaning the command palette) or if the command needs to be supported when both extensions are loaded/active.
 
-export const CMDOpenPanelClient = 'github.copilot.generate';
-export const CMDOpenPanelChat = 'github.copilot.chat.openSuggestionsPanel'; // "github.copilot.chat.generate" is already being used
+export const CMDOpenPanelClient = 'jiido.generate';
+export const CMDOpenPanelChat = 'jiido.chat.openSuggestionsPanel'; // "jiido.chat.generate" is already being used
 
-export const CMDAcceptCursorPanelSolutionClient = 'github.copilot.acceptCursorPanelSolution';
-export const CMDNavigatePreviousPanelSolutionClient = 'github.copilot.previousPanelSolution';
-export const CMDNavigateNextPanelSolutionClient = 'github.copilot.nextPanelSolution';
+export const CMDAcceptCursorPanelSolutionClient = 'jiido.acceptCursorPanelSolution';
+export const CMDNavigatePreviousPanelSolutionClient = 'jiido.previousPanelSolution';
+export const CMDNavigateNextPanelSolutionClient = 'jiido.nextPanelSolution';
 
-export const CMDToggleStatusMenuClient = 'github.copilot.toggleStatusMenu';
-export const CMDToggleStatusMenuChat = 'github.copilot.chat.toggleStatusMenu';
+export const CMDToggleStatusMenuClient = 'jiido.toggleStatusMenu';
+export const CMDToggleStatusMenuChat = 'jiido.chat.toggleStatusMenu';
 
 // Needs to be supported in both extensions when they are loaded/active. Requires a different ID.
-export const CMDSendCompletionsFeedbackChat = 'github.copilot.chat.sendCompletionFeedback';
+export const CMDSendCompletionsFeedbackChat = 'jiido.chat.sendCompletionFeedback';
 
-export const CMDEnableCompletionsChat = 'github.copilot.chat.completions.enable';
-export const CMDDisableCompletionsChat = 'github.copilot.chat.completions.disable';
-export const CMDToggleCompletionsChat = 'github.copilot.chat.completions.toggle';
-export const CMDEnableCompletionsClient = 'github.copilot.completions.enable';
-export const CMDDisableCompletionsClient = 'github.copilot.completions.disable';
-export const CMDToggleCompletionsClient = 'github.copilot.completions.toggle';
+export const CMDEnableCompletionsChat = 'jiido.chat.completions.enable';
+export const CMDDisableCompletionsChat = 'jiido.chat.completions.disable';
+export const CMDToggleCompletionsChat = 'jiido.chat.completions.toggle';
+export const CMDEnableCompletionsClient = 'jiido.completions.enable';
+export const CMDDisableCompletionsClient = 'jiido.completions.disable';
+export const CMDToggleCompletionsClient = 'jiido.completions.toggle';
 
-export const CMDOpenLogsClient = 'github.copilot.openLogs';
-export const CMDOpenDocumentationClient = 'github.copilot.openDocs';
+export const CMDOpenLogsClient = 'jiido.openLogs';
+export const CMDOpenDocumentationClient = 'jiido.openDocs';
 
 // Existing chat command reused for diagnostics
-export const CMDCollectDiagnosticsChat = 'github.copilot.debug.collectDiagnostics';
+export const CMDCollectDiagnosticsChat = 'jiido.debug.collectDiagnostics';
 
 // Context variable that enable/disable panel-specific commands
-export const CopilotPanelVisible = 'github.copilot.panelVisible';
-export const ComparisonPanelVisible = 'github.copilot.comparisonPanelVisible';
-export const HasMultipleCompletionModels = 'github.copilot.completions.hasMultipleModels';
+export const CopilotPanelVisible = 'jiido.panelVisible';
+export const ComparisonPanelVisible = 'jiido.comparisonPanelVisible';
+export const HasMultipleCompletionModels = 'jiido.completions.hasMultipleModels';
 
-export const CMDOpenModelPickerClient = 'github.copilot.openModelPicker';
-export const CMDOpenModelPickerChat = 'github.copilot.chat.openModelPicker';
+export const CMDOpenModelPickerClient = 'jiido.openModelPicker';
+export const CMDOpenModelPickerChat = 'jiido.chat.openModelPicker';

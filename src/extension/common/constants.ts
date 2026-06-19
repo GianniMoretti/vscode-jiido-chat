@@ -31,7 +31,7 @@ export const enum Intent {
 	AskAgent = 'askAgent',
 }
 
-export const GITHUB_PLATFORM_AGENT = 'github.copilot-dynamic.platform';
+export const GITHUB_PLATFORM_AGENT = 'jiido-dynamic.platform';
 
 // TODO@jrieken THIS IS WEIRD. We should read this from package.json
 export const agentsToCommands: Partial<Record<Intent, Record<string, Intent>>> = {

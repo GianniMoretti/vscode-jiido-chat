@@ -101,7 +101,7 @@ describe('CopilotCLITools', () => {
 			if (prPart) {
 				expect((prPart as any).title).toBe('Fix&Improve'); // &amp; unescaped
 				// command is set with openPullRequestReroute
-				expect((prPart as any).command.command).toBe('github.copilot.chat.openPullRequestReroute');
+				expect((prPart as any).command.command).toBe('jiido.chat.openPullRequestReroute');
 			}
 			if (markdownPart) {
 				expect((markdownPart as any).value?.value || (markdownPart as any).value).toContain('This is the PR body.');

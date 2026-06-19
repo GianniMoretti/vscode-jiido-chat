@@ -262,38 +262,38 @@ ${message}`,
 	};
 
 	// register commands
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.explain', doExplain));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.explain.palette', () => doExplain(undefined, true)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review', () => instaService.createInstance(ReviewSession).review('selection', vscode.ProgressLocation.Notification)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.stagedChanges', () => instaService.createInstance(ReviewSession).review('index', vscode.ProgressLocation.Notification)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.unstagedChanges', () => instaService.createInstance(ReviewSession).review('workingTree', vscode.ProgressLocation.Notification)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.changes', () => instaService.createInstance(ReviewSession).review('all', vscode.ProgressLocation.Notification)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.stagedFileChange', (resource: vscode.SourceControlResourceState) => {
+	disposables.add(vscode.commands.registerCommand('jiido.chat.explain', doExplain));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.explain.palette', () => doExplain(undefined, true)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review', () => instaService.createInstance(ReviewSession).review('selection', vscode.ProgressLocation.Notification)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.stagedChanges', () => instaService.createInstance(ReviewSession).review('index', vscode.ProgressLocation.Notification)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.unstagedChanges', () => instaService.createInstance(ReviewSession).review('workingTree', vscode.ProgressLocation.Notification)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.changes', () => instaService.createInstance(ReviewSession).review('all', vscode.ProgressLocation.Notification)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.stagedFileChange', (resource: vscode.SourceControlResourceState) => {
 		return instaService.createInstance(ReviewSession).review({ group: 'index', file: resource.resourceUri }, vscode.ProgressLocation.Notification);
 	}));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.unstagedFileChange', (resource: vscode.SourceControlResourceState) => {
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.unstagedFileChange', (resource: vscode.SourceControlResourceState) => {
 		return instaService.createInstance(ReviewSession).review({ group: 'workingTree', file: resource.resourceUri }, vscode.ProgressLocation.Notification);
 	}));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.codeReview.run', (input: CodeReviewInput) => {
+	disposables.add(vscode.commands.registerCommand('jiido.chat.codeReview.run', (input: CodeReviewInput) => {
 		return instaService.invokeFunction(reviewFileChanges, input);
 	}));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.apply', doApplyReview));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.applyAndNext', (commentThread: vscode.CommentThread) => doApplyReview(commentThread, true)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.applyShort', (commentThread: vscode.CommentThread) => doApplyReview(commentThread, true)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.continueInInlineChat', doContinueInInlineChat));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.continueInChat', doContinueInChat));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.discard', doDiscardReview));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.discardAndNext', (commentThread: vscode.CommentThread) => doDiscardReview(commentThread, true)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.discardShort', (commentThread: vscode.CommentThread) => doDiscardReview(commentThread, true)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.discardAll', doDiscardAllReview));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.markHelpful', markReviewHelpful));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.markUnhelpful', markReviewUnhelpful));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.previous', thread => goToNextReview(thread, -1)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.next', thread => goToNextReview(thread, +1)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.review.current', thread => goToNextReview(thread, 0)));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.generate', doGenerate));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.fix', doFix));
-	disposables.add(vscode.commands.registerCommand('github.copilot.chat.generateAltText', doGenerateAltText));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.apply', doApplyReview));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.applyAndNext', (commentThread: vscode.CommentThread) => doApplyReview(commentThread, true)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.applyShort', (commentThread: vscode.CommentThread) => doApplyReview(commentThread, true)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.continueInInlineChat', doContinueInInlineChat));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.continueInChat', doContinueInChat));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.discard', doDiscardReview));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.discardAndNext', (commentThread: vscode.CommentThread) => doDiscardReview(commentThread, true)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.discardShort', (commentThread: vscode.CommentThread) => doDiscardReview(commentThread, true)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.discardAll', doDiscardAllReview));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.markHelpful', markReviewHelpful));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.markUnhelpful', markReviewUnhelpful));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.previous', thread => goToNextReview(thread, -1)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.next', thread => goToNextReview(thread, +1)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.review.current', thread => goToNextReview(thread, 0)));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.generate', doGenerate));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.fix', doFix));
+	disposables.add(vscode.commands.registerCommand('jiido.chat.generateAltText', doGenerateAltText));
 	// register code actions
 	disposables.add(vscode.languages.registerCodeActionsProvider('*', instaService.createInstance(QuickFixesProvider), {
 		providedCodeActionKinds: QuickFixesProvider.providedCodeActionKinds,

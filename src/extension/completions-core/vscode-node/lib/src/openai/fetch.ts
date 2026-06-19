@@ -439,7 +439,7 @@ export function postProcessChoices(choices: AsyncIterable<APIChoice>) {
 	return asyncIterableFilter(choices, choice => choice.completionText.trim().length > 0);
 }
 
-export const CMDQuotaExceeded = 'github.copilot.completions.quotaExceeded';
+export const CMDQuotaExceeded = 'jiido.completions.quotaExceeded';
 
 export class LiveOpenAIFetcher extends OpenAIFetcher {
 	#disabledReason: string | undefined;

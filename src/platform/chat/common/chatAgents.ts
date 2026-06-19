@@ -30,5 +30,5 @@ export function getChatParticipantIdFromName(name: string): string {
 }
 
 export function getChatParticipantNameFromId(id: string): string {
-	return id.replace(/^github\.copilot\./, '');
+	return id.replace(/^jiido\./, '');
 }

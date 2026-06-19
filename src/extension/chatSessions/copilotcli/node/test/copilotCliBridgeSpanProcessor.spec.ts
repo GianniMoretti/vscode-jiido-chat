@@ -217,8 +217,8 @@ describe('CopilotCliBridgeSpanProcessor', () => {
 			name: 'hook sessionEnd',
 			traceId: 'trace-abc',
 			attributes: {
-				'github.copilot.hook.type': 'sessionEnd',
-				'github.copilot.hook.invocation_id': 'inv-123',
+				'jiido.hook.type': 'sessionEnd',
+				'jiido.hook.invocation_id': 'inv-123',
 			},
 		}));
 
@@ -242,8 +242,8 @@ describe('CopilotCliBridgeSpanProcessor', () => {
 			name: 'hook preToolUse',
 			traceId: 'trace-abc',
 			attributes: {
-				'github.copilot.hook.type': 'preToolUse',
-				'github.copilot.hook.invocation_id': 'inv-456',
+				'jiido.hook.type': 'preToolUse',
+				'jiido.hook.invocation_id': 'inv-456',
 			},
 		}));
 

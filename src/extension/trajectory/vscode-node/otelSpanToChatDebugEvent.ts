@@ -54,8 +54,8 @@ export function completedSpanToDebugEvent(span: ICompletedSpanData): vscode.Chat
 		case 'core_event':
 			return spanToGenericEvent(span);
 		default:
-			// SDK native hook spans use 'github.copilot.hook.type' instead of gen_ai.operation.name
-			if (span.name.startsWith('hook ') && asString(span.attributes['github.copilot.hook.type'])) {
+			// SDK native hook spans use 'jiido.hook.type' instead of gen_ai.operation.name
+			if (span.name.startsWith('hook ') && asString(span.attributes['jiido.hook.type'])) {
 				return spanToSdkHookEvent(span);
 			}
 			return undefined;
@@ -429,11 +429,11 @@ function spanToHookExecutionEvent(span: ICompletedSpanData): vscode.ChatDebugGen
 }
 
 /**
- * Convert an SDK native hook span (github.copilot.hook.*) to a debug panel event.
- * SDK uses span name "hook {type}" and attributes in the github.copilot.hook.* namespace.
+ * Convert an SDK native hook span (jiido.hook.*) to a debug panel event.
+ * SDK uses span name "hook {type}" and attributes in the jiido.hook.* namespace.
  */
 function spanToSdkHookEvent(span: ICompletedSpanData): vscode.ChatDebugGenericEvent {
-	const hookType = asString(span.attributes['github.copilot.hook.type']) ?? 'unknown';
+	const hookType = asString(span.attributes['jiido.hook.type']) ?? 'unknown';
 	const durationMs = span.endTime - span.startTime;
 	const isError = span.status.code === 2; /* ERROR */
 	const level = isError ? vscode.ChatDebugLogLevel.Error : vscode.ChatDebugLogLevel.Info;
