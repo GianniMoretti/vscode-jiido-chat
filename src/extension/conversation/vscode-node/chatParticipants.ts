@@ -274,50 +274,12 @@ Learn more about [GitHub Copilot](https://docs.github.com/copilot/using-github-c
 		};
 	}
 
-	private async switchToBaseModel(request: vscode.ChatRequest, stream: vscode.ChatResponseStream): Promise<ChatRequest> {
-		const endpoint = await this.endpointProvider.getChatEndpoint(request);
-		const baseEndpoint = await this.endpointProvider.getChatEndpoint('copilot-base');
-		// If it has a 0x multipler, it's free so don't switch them. If it's BYOK, it's free so don't switch them.
-		if (endpoint.multiplier === 0 || request.model.vendor !== 'copilot' || endpoint.multiplier === undefined) {
-			return request;
-		}
-		if (this._chatQuotaService.overagesEnabled || !this._chatQuotaService.quotaExhausted) {
-			return request;
-		}
-		const baseLmModel = (await vscode.lm.selectChatModels({ id: baseEndpoint.model, family: baseEndpoint.family, vendor: 'copilot' }))[0];
-		if (!baseLmModel) {
-			return request;
-		}
-		await vscode.commands.executeCommand('workbench.action.chat.changeModel', { vendor: baseLmModel.vendor, id: baseLmModel.id, family: baseLmModel.family });
-		// Switch to the base model and show a warning
-		request = { ...request, model: baseLmModel };
-		let messageString: vscode.MarkdownString;
-		if (this.authenticationService.copilotToken?.isIndividual) {
-			messageString = new vscode.MarkdownString(vscode.l10n.t({
-				message: 'You have exceeded your premium request allowance. We have automatically switched you to {0} which is included with your plan. [Enable additional paid premium requests]({1}) to continue using premium models.',
-				args: [baseEndpoint.name, 'command:chat.enablePremiumOverages'],
-				// To make sure the translators don't break the link
-				comment: [`{Locked=']({'}`]
-			}));
-			messageString.isTrusted = { enabledCommands: ['chat.enablePremiumOverages'] };
-		} else {
-			messageString = new vscode.MarkdownString(vscode.l10n.t('You have exceeded your premium request allowance. We have automatically switched you to {0} which is included with your plan. To enable additional paid premium requests, contact your organization admin.', baseEndpoint.name));
-		}
-		stream.warning(messageString);
+	// Jiido: no Copilot quota/rate-limit switching — return request unchanged
+	private async switchToBaseModel(request: vscode.ChatRequest, _stream: vscode.ChatResponseStream): Promise<ChatRequest> {
 		return request;
 	}
 
-	private async switchToAutoModel(request: vscode.ChatRequest, stream: vscode.ChatResponseStream, alwaysSwitchToAuto: boolean): Promise<ChatRequest> {
-		const autoModel = (await vscode.lm.selectChatModels({ id: 'auto', vendor: 'copilot' }))[0];
-		if (!autoModel) {
-			return request;
-		}
-		await vscode.commands.executeCommand('workbench.action.chat.changeModel', { vendor: autoModel.vendor, id: autoModel.id, family: autoModel.family });
-		request = { ...request, model: autoModel };
-		if (alwaysSwitchToAuto) {
-			await vscode.workspace.getConfiguration('github.copilot').update('chat.rateLimitAutoSwitchToAuto', true, vscode.ConfigurationTarget.Global);
-		}
-		stream.warning(new vscode.MarkdownString(vscode.l10n.t('You were rate-limited on the selected model. Switching to Auto and retrying your request.')));
+	private async switchToAutoModel(request: vscode.ChatRequest, _stream: vscode.ChatResponseStream, _alwaysSwitchToAuto: boolean): Promise<ChatRequest> {
 		return request;
 	}
 }

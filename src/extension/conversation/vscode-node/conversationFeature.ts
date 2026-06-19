@@ -17,7 +17,6 @@ import { IGitCommitMessageService } from '../../../platform/git/common/gitCommit
 import { ILogService } from '../../../platform/log/common/logService';
 import { ISettingsEditorSearchService } from '../../../platform/settingsEditor/common/settingsEditorSearchService';
 import { ITelemetryService } from '../../../platform/telemetry/common/telemetry';
-import { ChatExtGlobalPerfMark, markChatExtGlobal } from '../../../util/common/performance';
 import { isUri } from '../../../util/common/types';
 import { DeferredPromise } from '../../../util/vs/base/common/async';
 import { CancellationToken } from '../../../util/vs/base/common/cancellation';
@@ -85,32 +84,12 @@ export class ConversationFeature implements IExtensionContribution {
 		this._enabled = false;
 		this._activated = false;
 
-		// Register Copilot token listener
-		this.registerCopilotTokenListener();
-
+		// Jiido: activate immediately — no Copilot token needed
 		const activationBlockerDeferred = new DeferredPromise<void>();
 		this.activationBlocker = activationBlockerDeferred.p;
-		if (authenticationService.copilotToken) {
-			this.logService.info(`ConversationFeature: Copilot token already available`);
-			this.activated = true;
-			activationBlockerDeferred.complete();
-		} else {
-			markChatExtGlobal(ChatExtGlobalPerfMark.WillWaitForCopilotToken);
-			this.logService.info(`ConversationFeature: Waiting for copilot token to activate conversation feature`);
-		}
-
-		this._disposables.add(authenticationService.onDidAuthenticationChange(async () => {
-			const hasSession = !!authenticationService.copilotToken;
-			this.logService.info(`ConversationFeature: onDidAuthenticationChange has token: ${hasSession}`);
-			if (hasSession) {
-				markChatExtGlobal(ChatExtGlobalPerfMark.DidWaitForCopilotToken);
-				this.activated = true;
-			} else {
-				this.activated = false;
-			}
-
-			activationBlockerDeferred.complete();
-		}));
+		this.logService.info(`ConversationFeature: Jiido mode — activating immediately`);
+		this.activated = true;
+		activationBlockerDeferred.complete();
 	}
 
 	get enabled() {
@@ -340,13 +319,7 @@ export class ConversationFeature implements IExtensionContribution {
 		return disposables;
 	}
 
-	private registerCopilotTokenListener() {
-		this._disposables.add(this.authenticationService.onDidAuthenticationChange(() => {
-			const chatEnabled = this.authenticationService.copilotToken !== undefined;
-			this.logService.info(`copilot token sku: ${this.authenticationService.copilotToken?.sku ?? ''}`);
-			this.enabled = chatEnabled ?? false;
-		}));
-	}
+	// Jiido: no Copilot token listener needed — always enabled
 
 	private registerTerminalQuickFixProviders() {
 		const isEnabled = () => this.enabled;
